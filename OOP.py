@@ -58,7 +58,7 @@ p1 = Point(3,4)
 # print(p1.distance())
 p2 = Point(6,13)
 p3 = Point(1,1)
-print(p1.distance())
+# print(p1.distance())
 
 
 # Let's make a class together!
@@ -85,3 +85,65 @@ class Car():
         print("skrrt skrrt ☸️")
 
 gabes_volvo = Car("Volvo", "XC40", "2022")
+
+
+
+#  <-------- CLASS INHERITANCE ------->
+
+class Phone():
+    def __init__(self, number):
+        self.number = number
+
+    def __str__(self):
+        return f"You have reached {self.number}"
+
+    def call(self):
+        print(f"calling you for some reason from {self.number}")
+
+    def text(self):
+        print(f"this is how people actually communicate these days. anyways, you're getting a text from {self.number}")
+
+
+gabes_generic_phone = Phone("510-666-6666")
+# gabes_generic_phone.call()
+
+# just like in js, we can make child classes that inherit properties from their parent class.
+
+class IPhone(Phone):
+    def __init__(self, number, generation, color):
+        super().__init__(number)
+        self.generation = generation
+        self.color = color
+        self.fingerprint = None
+
+    # you can override a method from the parent by simply redefining it. Otherwise, you will inherit methods from the parent as-is.
+    def __str__(self):
+        return f"this is my bougie iphone {self.generation}. i managed to get it in {self.color}. FINGERPRINT SETTINGS: {self.fingerprint}"
+
+    def set_fingerprint(self, value):
+        self.fingerprint = value
+    
+    def unlock(self, input):
+        if(self.fingerprint == input):
+            print("unlocked! welcome user!")
+        else:
+            print("fingerprint not recognized. calling the police.")
+
+gabes_iphone = IPhone("510-666-6666", 14, "Rose Gold")
+gabes_iphone.set_fingerprint("Gabe")
+# print(gabes_iphone)
+# gabes_iphone.unlock("Weston")
+
+class Android(Phone):
+    def __init__(self, number, keyboard = "Default"):
+        super().__init__(number)
+        self.keyboard = keyboard
+
+    def __str__(self):
+        return f"This Android uses the {self.keyboard} keyboard."
+
+    def set_keyboard(self, input):
+        self.keyboard = input
+
+gabes_google_pixel_6 = Android("510-666-6666")
+print(gabes_google_pixel_6)
