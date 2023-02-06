@@ -41,20 +41,31 @@ class Point():
     def __str__(self):
         return f'{self.x}, {self.y}'
 
-    def distance(self):
-        return math.sqrt(self.x**2 + self.y**2)
+    def distance(self, p2 = None):
+        if(p2 == None):
+            p2 = Point.ORIGIN
+        else:
+            dx = self.x - p2.x
+            dy = self.y - p2.y
+            return math.sqrt(dx**2 + dy**2)
+            
 
+Point.ORIGIN = Point()
 
-p0 = Point()
-print(p0.distance())
+# p0 = Point()
+# print(p0.distance())
 p1 = Point(3,4)
+# print(p1.distance())
+p2 = Point(6,13)
+p3 = Point(1,1)
 print(p1.distance())
+
 
 # Let's make a class together!
 
 class Car():
     # we need a make, a model, a year, and a speed. ✅
-    # we also need to be able to accelerate and brake.
+    # we also need to be able to accelerate and brake. 
     # any parameter with default values NEEED to go at the end.
     def __init__(self, make, model, year, speed=0):
         self.make = make
@@ -74,4 +85,3 @@ class Car():
         print("skrrt skrrt ☸️")
 
 gabes_volvo = Car("Volvo", "XC40", "2022")
-print(gabes_volvo)
